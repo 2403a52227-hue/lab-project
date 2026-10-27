@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BookNest — a colorful library management system demonstrating Observer, Strategy and Command design patterns." />
+  <title>BookNest | Smart Library</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#" aria-label="BookNest home">
+        <span class="brand-mark">B<span>+</span></span>
+        <span><strong>BookNest</strong><small>SMART LIBRARY</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-menu" aria-label="Main navigation">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">◫</span> Overview</button>
+        <button class="nav-item" data-view="catalogue"><span class="nav-icon">▤</span> Book catalogue <span class="nav-count" id="navBookCount">12</span></button>
+        <button class="nav-item" data-view="borrowed"><span class="nav-icon">▣</span> My borrowed books</button>
+        <button class="nav-item" data-view="activity"><span class="nav-icon">↺</span> Activity &amp; undo</button>
+        <button class="nav-item" data-view="librarian"><span class="nav-icon">✦</span> Librarian desk</button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="side-help">
+        <div class="help-orb">✧</div>
+        <strong>Need a little help?</strong>
+        <p>Explore how three behavioral design patterns power this library.</p>
+        <button id="showPatternsBtn" class="help-link">Explore patterns <span>↗</span></button>
+      </div>
+      <div class="profile">
+        <div class="avatar">GN</div>
+        <div><strong>Guest Reader</strong><small>Student account</small></div>
+        <span class="profile-dot"></span>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu" aria-label="Open navigation">☰</button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong id="breadcrumbTitle">Overview</strong></div>
+        <div class="top-actions">
+          <div class="date-chip"><span>◷</span> <span id="todayDate">Today</span></div>
+          <button class="icon-button notification-button" id="notificationBtn" aria-label="Show notifications">♧<i id="notificationDot"></i></button>
+          <div class="top-avatar">GN</div>
+        </div>
+      </header>
+
+      <section class="page-view active" id="view-overview">
+        <div class="welcome-row">
+          <div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span> YOUR PERSONAL READING SPACE</div>
+            <h1>Good to see you, <span class="gradient-text">Reader!</span> <span class="wave">✦</span></h1>
+            <p class="subheading">A little reading goes a long way. What will you discover today?</p>
+          </div>
+          <button class="primary-button" data-go="catalogue"><span>＋</span> Explore books</button>
+        </div>
+
+        <div class="hero-banner">
+          <div class="hero-content">
+            <div class="hero-pill"><span>✦</span> YOUR NEXT CHAPTER STARTS HERE</div>
+            <h2>Stories take you<br><em>everywhere.</em></h2>
+            <p>Find your next favorite read from our curated collection of knowledge, ideas and imagination.</p>
+            <button class="hero-button" data-go="catalogue">Discover the collection <span>→</span></button>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="sun-disc"></div><div class="art-spark spark-one">✦</div><div class="art-spark spark-two">✧</div>
+            <div class="book-stack"><div class="book book-a"><i></i><b>THE<br>CREATIVE<br>MIND</b><small>IDEAS • ART • LIFE</small></div><div class="book book-b"><i></i><b>DESIGN<br>YOUR<br>FUTURE</b><small>VOL. 02</small></div><div class="book book-c"><i></i><b>THE<br>GARDEN<br>OF IDEAS</b><small>EST. 2024</small></div></div>
+            <div class="art-floor"></div>
+          </div>
+          <div class="hero-decoration">B</div>
+        </div>
+
+        <div class="section-heading"><div><h2>Your library at a glance</h2><p>Small steps, big discoveries.</p></div><button class="text-button" data-go="catalogue">View catalogue <span>→</span></button></div>
+        <div class="stats-grid">
+          <article class="stat-card stat-purple"><div class="stat-top"><span class="stat-icon">▤</span><span class="stat-tag">COLLECTION</span></div><div class="stat-value" id="statTotal">12</div><div class="stat-label">Books in library</div><div class="stat-foot"><span class="mini-dot"></span> Across multiple genres</div><div class="stat-illustration">▤</div></article>
+          <article class="stat-card stat-pink"><div class="stat-top"><span class="stat-icon">♡</span><span class="stat-tag">YOUR READING</span></div><div class="stat-value" id="statBorrowed">2</div><div class="stat-label">Currently borrowed</div><div class="stat-foot"><span class="mini-dot"></span> Keep your momentum</div><div class="stat-illustration">♡</div></article>
+          <article class="stat-card stat-mint"><div class="stat-top"><span class="stat-icon">✓</span><span class="stat-tag">AVAILABLE</span></div><div class="stat-value" id="statAvailable">10</div><div class="stat-label">Ready to discover</div><div class="stat-foot"><span class="mini-dot"></span> Pick one today</div><div class="stat-illustration">✦</div></article>
+          <article class="stat-card stat-orange"><div class="stat-top"><span class="stat-icon">♧</span><span class="stat-tag">NOTIFICATIONS</span></div><div class="stat-value" id="statNotifications">3</div><div class="stat-label">Updates for you</div><div class="stat-foot"><span class="mini-dot"></span> Observer pattern</div><div class="stat-illustration">♧</div></article>
+        </div>
+
+        <div class="content-grid">
+          <section class="panel featured-panel">
+            <div class="panel-heading"><div><h2>Popular this week <span class="heading-spark">✦</span></h2><p>Handpicked for curious minds</p></div><span class="live-label"><i></i> TRENDING</span></div>
+            <div class="featured-list" id="featuredList"></div>
+          </section>
+          <section class="panel pattern-panel">
+            <div class="panel-heading"><div><h2>Behind the experience</h2><p>Behavioral patterns in action</p></div><span class="pattern-glyph">⌘</span></div>
+            <div class="pattern-mini"><span class="pattern-symbol observer-symbol">◉</span><div><strong>Observer</strong><p>Get notified when book availability changes.</p></div><span class="pattern-arrow">↗</span></div>
+            <div class="pattern-mini"><span class="pattern-symbol strategy-symbol">⇄</span><div><strong>Strategy</strong><p>Switch fine calculation rules at runtime.</p></div><span class="pattern-arrow">↗</span></div>
+            <div class="pattern-mini"><span class="pattern-symbol command-symbol">↶</span><div><strong>Command</strong><p>Borrow, return and undo actions safely.</p></div><span class="pattern-arrow">↗</span></div>
+            <button class="outline-button full-width" id="openPatternDetails">View design pattern details <span>→</span></button>
+          </section>
+        </div>
+        <div class="footer-note">Made for learning <span>♥</span> SESD • Design Patterns II <span class="footer-version">BookNest v2.0</span></div>
+      </section>
+
+      <section class="page-view" id="view-catalogue">
+        <div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> FIND YOUR NEXT READ</div><h1>Book <span class="gradient-text">catalogue</span></h1><p class="subheading">Browse the collection, search by title or author, and borrow available books.</p></div><div class="catalogue-count"><strong id="catalogueTotal">12</strong><span>books<br>in collection</span></div></div>
+        <div class="toolbar panel"><label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Search by title, author or genre..." /></label><select id="categoryFilter" aria-label="Filter by category"><option value="all">All genres</option></select><select id="availabilityFilter" aria-label="Filter by availability"><option value="all">All availability</option><option value="available">Available</option><option value="borrowed">Borrowed</option></select></div>
+        <div class="results-line"><span id="resultsCount">12 books</span><span>Sorted by <strong>curated picks</strong></span></div>
+        <div class="book-grid" id="bookGrid"></div>
+        <div class="empty-state hidden" id="emptyBooks"><div>⌕</div><h3>No books found</h3><p>Try another search or filter.</p><button class="outline-button" id="clearFilters">Clear filters</button></div>
+      </section>
+
+      <section class="page-view" id="view-borrowed">
+        <div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR CURRENT STACK</div><h1>My borrowed <span class="gradient-text">books</span></h1><p class="subheading">Keep track of your reading journey and return books when you finish.</p></div><div class="borrowed-summary"><span class="summary-icon">♡</span><div><strong id="borrowedSummaryCount">2 books</strong><small>in your reading stack</small></div></div></div>
+        <div class="borrowed-grid" id="borrowedGrid"></div>
+        <div class="empty-state hidden" id="emptyBorrowed"><div>♡</div><h3>Your reading stack is waiting</h3><p>Borrow a book from the catalogue to see it here.</p><button class="primary-button" data-go="catalogue">Explore books →</button></div>
+      </section>
+
+      <section class="page-view" id="view-activity">
+        <div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> YOUR ACTION HISTORY</div><h1>Activity &amp; <span class="gradient-text">undo</span></h1><p class="subheading">Every borrow and return is a command you can review or undo.</p></div><button class="outline-button" id="clearActivity">Clear history</button></div>
+        <div class="activity-layout"><div class="panel activity-panel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Command pattern • reversible actions</p></div><span class="history-icon">↺</span></div><div id="activityList" class="activity-list"></div><div id="emptyActivity" class="empty-inline hidden">No activity yet. Borrow or return a book to start your history.</div></div><aside class="panel undo-panel"><div class="undo-art">↶</div><span class="small-label">COMMAND PATTERN</span><h2>Oops? Undo it.</h2><p>The Command pattern wraps each action as an object, making it possible to reverse the most recent operation.</p><button class="primary-button full-width" id="undoButton">↶ Undo last action</button><small id="undoHelp">Your latest action will appear here.</small></aside></div>
+      </section>
+
+      <section class="page-view" id="view-librarian">
+        <div class="page-title-row"><div><div class="eyebrow"><span class="eyebrow-dot"></span> MANAGE THE COLLECTION</div><h1>Librarian <span class="gradient-text">desk</span></h1><p class="subheading">Add books, test fine strategies, and explore how the system responds.</p></div><span class="admin-badge">✦ DEMO ADMIN</span></div>
+        <div class="admin-grid">
+          <section class="panel admin-form-panel"><div class="panel-heading"><div><h2>Add a new book</h2><p>Extend the catalogue</p></div><span class="admin-icon">＋</span></div><form id="addBookForm"><label>Book title<input id="newTitle" required maxlength="90" placeholder="e.g. The Art of Learning" /></label><label>Author<input id="newAuthor" required maxlength="70" placeholder="e.g. Josh Waitzkin" /></label><div class="form-row"><label>Genre<select id="newCategory"><option>Technology</option><option>Fiction</option><option>Self-growth</option><option>Science</option><option>Design</option><option>Business</option><option>History</option></select></label><label>Accent<select id="newColor"><option value="lavender">Lavender</option><option value="peach">Peach</option><option value="mint">Mint</option><option value="blue">Blue</option><option value="yellow">Yellow</option><option value="pink">Pink</option></select></label></div><label>Short description<textarea id="newDescription" rows="3" maxlength="180" placeholder="What makes this book worth reading?"></textarea></label><button class="primary-button" type="submit">＋ Add book to library</button></form></section>
+          <section class="panel strategy-panel"><div class="panel-heading"><div><h2>Fine calculator</h2><p>Strategy pattern • choose at runtime</p></div><span class="strategy-badge">⇄ STRATEGY</span></div><p class="muted-copy">Select a policy to calculate a sample late-return fine. Change the strategy without changing the calculator itself.</p><label class="select-label">Fine strategy<select id="fineStrategy"><option value="standard">Standard — ₹10 per day</option><option value="student">Student — ₹5 per day</option><option value="none">No fine — ₹0 per day</option></select></label><label class="select-label">Days late <div class="range-row"><input type="range" id="daysLate" min="0" max="30" value="6" /><output id="daysOutput">6 days</output></div></label><div class="fine-result"><span>Estimated fine</span><strong id="fineAmount">₹60</strong><small id="fineExplanation">6 days × ₹10/day using Standard strategy</small></div><div class="code-note"><span>ⓘ</span> The <code>FineCalculator</code> receives a strategy object, so each policy can be swapped independently.</div></section>
+        </div>
+        <section class="panel observer-demo"><div class="panel-heading"><div><h2>Observer pattern simulator</h2><p>See notifications update when book availability changes</p></div><span class="observer-badge">◉ OBSERVER</span></div><div class="observer-content"><div class="observer-visual"><div class="observer-node subject-node"><span>▤</span><strong>Book subject</strong><small>Availability changes</small></div><div class="observer-lines"><i></i><i></i><i></i><span>notifyObservers()</span></div><div class="observer-node subscriber-node"><span>♧</span><strong>Reader subscribers</strong><small>Receive update()</small></div></div><div class="observer-controls"><p>Borrow or return a book in the catalogue to trigger an Observer notification. You can also send a test update.</p><button class="outline-button" id="testNotification">♧ Send test notification</button><div class="mini-notice" id="observerLastNotice">Waiting for an event…</div></div></div></section>
+        <section class="panel inventory-panel"><div class="panel-heading"><div><h2>Inventory snapshot</h2><p>Live catalogue overview</p></div><span class="inventory-count" id="inventoryCount">12 titles</span></div><div id="inventoryRows" class="inventory-rows"></div></section>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite"></div>
+  <div class="modal-backdrop hidden" id="modalBackdrop"><section class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Close dialog">×</button><div class="modal-icon">⌘</div><h2 id="modalTitle">Behavioral design patterns</h2><p class="modal-intro">BookNest demonstrates three patterns from the SESD assignment.</p><div class="modal-pattern"><span class="pattern-symbol observer-symbol">◉</span><div><strong>1. Observer Pattern</strong><p><b>Purpose:</b> define a one-to-many dependency so subscribers receive updates when a subject changes. Here, readers are notified when book availability changes.</p><small>Classes: <code>Book</code>, <code>StudentNotification</code></small></div></div><div class="modal-pattern"><span class="pattern-symbol strategy-symbol">⇄</span><div><strong>2. Strategy Pattern</strong><p><b>Purpose:</b> encapsulate interchangeable algorithms. Here, the fine calculator can use standard, student, or no-fine policies at runtime.</p><small>Classes: <code>FineCalculator</code>, <code>StandardFineStrategy</code>, <code>StudentFineStrategy</code>, <code>NoFineStrategy</code></small></div></div><div class="modal-pattern"><span class="pattern-symbol command-symbol">↶</span><div><strong>3. Command Pattern</strong><p><b>Purpose:</b> encapsulate a request as an object. Here, borrow and return actions can be recorded and the last action can be undone.</p><small>Classes: <code>BorrowBookCommand</code>, <code>ReturnBookCommand</code>, <code>CommandManager</code></small></div></div><div class="modal-footer"><span>SESD • Behavioral Design Patterns II</span><button class="primary-button" id="modalDone">Got it ✓</button></div></section></div>
+
+  <script src="js/patterns.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
