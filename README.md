@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # BookNest — Smart Library Management System
 
 A colorful, responsive, browser-based library management demo built for **SESD — Implementing Design Patterns II (Behavioral)**.
@@ -57,3 +58,6 @@ This is a static site, so it can be published with GitHub Pages:
 - The project is a front-end demonstration; data is stored locally in each browser, not in a shared online database.
 - Fine calculations are educational examples, not real institutional policy.
 - Before submission, test borrowing, returning, undo, filters, add/remove, fine strategies, and the mobile layout.
+=======
+# lab-project
+>>>>>>> 6aee2bfb622e61957e66ddb7b5e3ab66a9e9e743
